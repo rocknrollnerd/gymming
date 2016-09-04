@@ -3,7 +3,7 @@ import optparse
 from lasagne import nonlinearities
 import numpy as np
 
-from algo.policy_nn import NeuralNetworkGradientPolicy
+from algo.policy_nn import NNCategoricalGradientPolicy
 
 gamma = 0.95  # discount factor for reward
 
@@ -43,7 +43,7 @@ def run():
     env = gym.make('CartPole-v0')
     env.monitor.start('/tmp/cartpole-experiment-1', force=True)
 
-    policy = NeuralNetworkGradientPolicy(input_size=4, network_schema=(
+    policy = NNCategoricalGradientPolicy(input_size=4, network_schema=(
         {'n_neurons': 20, 'nonlinearity': nonlinearities.leaky_rectify},
         {'n_neurons': 10, 'nonlinearity': nonlinearities.leaky_rectify},
         {'n_neurons': 2, 'nonlinearity': nonlinearities.softmax}
